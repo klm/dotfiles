@@ -1,0 +1,56 @@
+export HISTCONTROL=ignoreboth
+export SVN_EDITOR=/usr/bin/vim
+export EDITOR="vim"
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+#switch to a gem directory, trying to match your name the best
+function cdgem {
+	cd  /usr/lib64/ruby/gems/1.8/gems/; cd `ls|grep $1|sort|tail -1`
+}
+
+function authme {
+  ssh $1 'cat >>.ssh/authorized_keys' <~/.ssh/id_dsa.pub
+}
+
+# Disable flow control commands (keeps C-s from freezing everything)
+stty start undef
+stty stop undef
+
+# get the ssh agent started
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+	echo "Initialising new SSH agent..."
+	/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+	echo succeeded
+	chmod 600 "${SSH_ENV}"
+	. "${SSH_ENV}" > /dev/null
+	/usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+	. "${SSH_ENV}" > /dev/null
+	ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+	start_agent;
+	}
+else
+	start_agent;
+fi 
+
+
+# get the prompt set up for git
+
+function parse_git_branch {
+  ref=$(git-symbolic-ref HEAD 2> /dev/null) || return
+  echo "("${ref#refs/heads/}")"
+}
+
+YELLOW="\[\033[0;33m\]"
+ 
+export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w$YELLOW \$(parse_git_branch) \$\[\033[00m\] "

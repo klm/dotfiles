@@ -1,0 +1,18 @@
+alias h='history'
+alias c='clear'
+alias rbash='source ~/.bash_profile' #reload it
+
+alias sup='svn up'
+alias sst='svn st'
+alias sc='script/console'
+alias ss="script/server"
+
+#(i)gnore grep -- ignores .svn directories/files
+alias igrep="find . -path '*/.svn' -prune -o -type f -print0 | xargs -0 grep -I -n -e"
+
+alias i="cd ~/projects/dfhcc_informatics"
+alias t="cd ~/projects/dfhcc_trials"
+alias e="cd ~/projects/events/trunk"
+
+alias f09='cd ~/e168f09'
+alias sec='cd ~/section'
