@@ -41,7 +41,6 @@ set statusline+=%<%P                         " file position
 
 " use ack instead of grep
 set grepprg=ack
-set grepformat=%f:%l:m
 
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
@@ -78,14 +77,11 @@ map <C-h> :nohl<CR>
 "new tab
 map <C-t> <esc>:tabnew<CR>
 
-" control-l insert hash in insert mode
-imap <C-l> <Space>=><Space>
-
 " run a single ruby test:
-map <Leader>o ?def <CR>:nohl<CR>w"zy$:!ruby <C-r>% -n <C-r>z<CR>
+map <Leader>o ?def <CR>:nohl<CR>w"zy$:!ruby -I"test" <C-r>% -n <C-r>z<CR>
 
 " run a file of tests
-map <Leader>t :!ruby <C-r>%<CR>
+map <Leader>t :!ruby -I"test" <C-r>%<CR>
  
 " split vertically with <leader> v
 " split horizontall with <leader> s
