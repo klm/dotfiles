@@ -13,6 +13,6 @@ def hide_log
   change_log(nil)
 end
 
-def show_session(session)
-  Marshal.load(Base64.decode64(session))
+def show_session(cookie)
+  Marshal.load(Base64.decode64(CGI.unescape(cookie.split("\n").join).split('--').first))
 end
