@@ -10,10 +10,12 @@ alias ss="script/server"
 alias igrep="find . -path '*/.svn' -prune -o -type f -print0 | xargs -0 grep -I -n -e"
 
 alias n="cd ~/projects/nucleus"
-alias t="cd ~/projects/dfhcc_trials"
-alias e="cd ~/projects/events/trunk"
+alias m="cd ~/projects/montague"
 
 alias f09='cd ~/e168f09'
 alias sec='cd ~/section'
 
 alias rcg='ssh rcgw1.dfci.harvard.edu'
+
+alias rc='rails console'
+alias rs='rails server --debugger'
