@@ -16,6 +16,7 @@ alias f09='cd ~/e168f09'
 alias sec='cd ~/section'
 
 alias rcg='ssh rcgw1.dfci.harvard.edu'
+alias rd2='ssh rd2.dfci.harvard.edu'
 
 alias rc='rails console'
 alias rs='rails server --debugger'
