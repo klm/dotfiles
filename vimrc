@@ -59,6 +59,9 @@ highlight StatusLine ctermfg=yellow
 
 let mapleader = ","
 
+" get me outta here
+command Q q
+
 " clear highlighting
 map <C-h> :nohl<CR>
 
