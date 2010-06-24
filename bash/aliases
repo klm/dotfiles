@@ -20,3 +20,8 @@ alias rd2='ssh rd2.dfci.harvard.edu'
 
 alias rc='rails console'
 alias rs='rails server --debugger'
+
+alias gca="git commit -a -m"
+alias gc="git commit"
+alias gm="git commit -m"
+alias gd="git diff"
