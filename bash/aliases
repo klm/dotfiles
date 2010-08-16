@@ -25,3 +25,5 @@ alias gca="git commit -a -m"
 alias gc="git commit"
 alias gm="git commit -m"
 alias gd="git diff"
+
+alias retag='ctags -R --exclude=.svn --exclude=.git --exclude=log *'

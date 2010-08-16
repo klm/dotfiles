@@ -100,10 +100,6 @@ map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>s :split <C-R>=expand("%:p:h") .  '/'<CR>
 map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
 
-" Opens a tab edit command with the path of the currently edited file filled
-" in Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
 " Inserts the path of the currently edited file into a command
 " Command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
@@ -138,10 +134,6 @@ imap uu _
 imap hh =>
 imap aa @
 
-" add new lines without entering insert mode
-map <S-Enter> 0<ESC>
-map <Enter> o<ESC>
-
 " colors
 " colorscheme ir_black
 
@@ -151,3 +143,5 @@ map <Enter> o<ESC>
 " fuzzyfinder textmate
 map <leader>h :FuzzyFinderTextMate<cr>
 let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
+
+set tags=./tags
