@@ -23,8 +23,8 @@ set hlsearch
 set history=1000
 set autoread
 
-set backupdir=/tmp   
-set directory=/tmp "don't clutter my dirs with swp and tmp files
+set backupdir=~/.tmp   
+set directory=~/.tmp "don't clutter my dirs with swp and tmp files
 
 set backspace=indent,eol,start
 
@@ -83,6 +83,9 @@ map <Leader>o ?def <CR>:nohl<CR>w"zy$:!ruby -I"test" <C-r>% -n <C-r>z<CR>
 
 " run a file of tests
 map <Leader>t :!ruby -I"test" <C-r>%<CR>
+
+" run cucumber feature
+map <Leader>cc :!cucumber %<CR>
  
 " split vertically with <leader> v
 " split horizontall with <leader> s
