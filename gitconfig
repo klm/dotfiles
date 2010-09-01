@@ -18,3 +18,5 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 [branch]
 	autosetupmerge = true
+[core]
+	excludesfile = /home/klm42/.gitignore
