@@ -11,6 +11,8 @@ alias igrep="find . -path '*/.svn' -prune -o -type f -print0 | xargs -0 grep -I 
 
 alias n="cd ~/projects/nucleus"
 alias m="cd ~/projects/montague"
+alias p="cd ~/projects/presuming-education"
+alias cm="cd ~/projects/camberwell"
 
 alias f09='cd ~/e168f09'
 alias sec='cd ~/section'
