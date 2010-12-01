@@ -82,7 +82,7 @@ map <C-t> <esc>:tabnew<CR>
 map <Leader>o ?def <CR>:nohl<CR>w"zy$:!ruby -I"test" <C-r>% -n <C-r>z<CR>
 
 " run a file of tests
-map <Leader>t :!ruby -I"test" <C-r>%<CR>
+map <Leader>t :!ruby -I"test" -I"spec" %<CR>
 
 " run cucumber feature
 map <Leader>cc :!cucumber %<CR>
