@@ -79,7 +79,8 @@ map <C-h> :nohl<CR>
 map <C-t> <esc>:tabnew<CR>
 
 " run a single ruby test:
-map <Leader>o ?def <CR>:nohl<CR>w"zy$:!ruby -I"test" <C-r>% -n <C-r>z<CR>
+" map <Leader>o ?def <CR>:nohl<CR>w"zy$:!ruby -I"test" <C-r>% -n <C-r>z<CR>
+map <Leader>o :.Rake<CR>
 
 " run a file of tests
 map <Leader>t :!ruby -I"test" -I"spec" %<CR>
