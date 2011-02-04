@@ -15,10 +15,4 @@ if [ -f ~/.profile ]; then
 	. ~/.profile #macports
 fi
 
-if [ -f ~/bin/ruby_switcher.sh ]; then
-	source ~/bin/ruby_switcher.sh
-fi
-
-PATH=$PATH:$HOME/bin
-
-export PATH
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
