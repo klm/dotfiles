@@ -1,5 +1,5 @@
 [user]
-	name = klm
+	name = Keith Morrison
 	email = keith_morrison@dfci.harvard.edu
 [color]
 	diff = auto
@@ -15,7 +15,7 @@
 	br = branch
 	co = checkout
 	df = diff
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr - %cn)%Creset' --abbrev-commit --date=relative
 [branch]
 	autosetupmerge = true
 	autosetuprebase = always
