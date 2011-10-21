@@ -85,6 +85,9 @@ map <Leader>o :.Rake<CR>
 " run a file of tests
 map <Leader>t :!ruby -I"test" -I"spec" %<CR>
 
+" run spec in documentation mode
+map <Leader>rd :!bundle exec rspec % --format documentation<CR>
+
 " run cucumber feature
 map <Leader>cc :!cucumber %<CR>
  
@@ -147,3 +150,5 @@ map <leader>h :FuzzyFinderTextMate<cr>
 let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
 
 set tags=./tags
+
+call pathogen#infect
