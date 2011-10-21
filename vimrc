@@ -38,6 +38,7 @@ set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=%=                           " right align remainder
 set statusline+=%-14(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
+set statusline+=%{fugitive#statusline()}
 
 " use ack instead of grep
 set grepprg=ack
