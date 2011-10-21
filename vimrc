@@ -151,4 +151,4 @@ let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;
 
 set tags=./tags
 
-call pathogen#infect
+call pathogen#infect()
