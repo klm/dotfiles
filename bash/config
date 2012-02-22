@@ -50,6 +50,17 @@ function parse_git_branch {
 	  git branch 2>/dev/null | grep '^*' | colrm 1 2 | sed 's_\(.*\)_(\1)_'
 }
 
-YELLOW="\[\033[0;33m\]"
+function git_dirty {
+  git diff --quiet HEAD &>/dev/null
+  [ $? == 1 ] && echo "!"
+}
 
-export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w$YELLOW \$(parse_git_branch) \$\[\033[00m\] "
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GRAY="\[\033[1;30m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+NONE="\[\033[0m\]"
+
+export PS1="$GREEN\u@\h$BLUE\w$GRAY \$(~/.rvm/bin/rvm-prompt i v g):$YELLOW\$(parse_git_branch)$RED\$(git_dirty)$NONE\$ "
