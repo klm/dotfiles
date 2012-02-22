@@ -2,6 +2,6 @@
 
 # Add the .rake extension to ruby types
 --type-add
-ruby=.rake
+ruby=.rake,.feature
 
 --type-set=haml=.haml
