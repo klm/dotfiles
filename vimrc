@@ -140,6 +140,16 @@ imap uu _
 imap hh =>
 imap aa @
 
+" better movement on wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+
+
 " colors
 " colorscheme ir_black
 
