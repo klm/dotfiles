@@ -7,10 +7,12 @@ end
       
 def show_log
   change_log(STDOUT)
+  reload!
 end
 
 def hide_log
   change_log(nil)
+  reload!
 end
 
 def show_session(cookie)
