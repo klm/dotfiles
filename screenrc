@@ -1,3 +1,6 @@
+startup_message off
+vbell off
+
 hardstatus alwayslastline "%{= KW}%-w%{= ck}%50>%n %t%{-}%+w%<%-22=%{w}%c [%l]"
 
 nonblock 5
