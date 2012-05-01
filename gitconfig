@@ -1,6 +1,6 @@
 [user]
 	name = Keith Morrison
-	email = keith_morrison@dfci.harvard.edu
+	email = kleonardmorrison@gmail.com
 [color]
 	diff = auto
 	status = auto
@@ -21,3 +21,7 @@
 	autosetuprebase = always
 [core]
 	excludesfile = /home/klm42/.gitignore
+[rerere]
+	enabled = 1
+[push]
+	default = current
