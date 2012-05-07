@@ -1,3 +1,6 @@
+call pathogen#infect()
+call pathogen#helptags()
+
 set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -152,6 +155,8 @@ vnoremap > >gv
 
 " colors
 " colorscheme ir_black
+set background=dark
+colorscheme solarized
 
 " NERDTree
 :noremap <leader>n :NERDTreeToggle<cr>
@@ -161,6 +166,3 @@ map <leader>h :FuzzyFinderTextMate<cr>
 let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
 
 set tags=./tags
-
-call pathogen#infect()
-call pathogen#helptags()
