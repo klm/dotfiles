@@ -21,7 +21,12 @@
 	autosetuprebase = always
 [core]
 	excludesfile = /home/klm42/.gitignore
+	whitespace = trailing-space,space-before-tab
 [rerere]
 	enabled = 1
 [push]
 	default = current
+[diff]
+	mnemonicprefix = true
+[merge]
+	stat = true
