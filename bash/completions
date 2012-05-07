@@ -1,4 +1,9 @@
-source ~/.bash/completion_scripts/git_completion
+# Git completion from homebrew
+if [ -f `brew --prefix git`/etc/bash_completion.d/git-completion.bash ]; then
+  source `brew --prefix git`/etc/bash_completion.d/git-completion.bash
+else
+  source ~/.bash/completion_scripts/git_completion
+fi
 
 # Bash completion from homebrew
 if [ -f `brew --prefix`/etc/bash_completion ]; then
