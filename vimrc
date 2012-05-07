@@ -1,11 +1,29 @@
-call pathogen#infect()
-call pathogen#helptags()
-
 set nocompatible      " We're running Vim, not Vi!
 syntax on             " Enable syntax highlighting
-filetype on           " Enable filetype detection
+filetype off           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
+
+" Vundle setup
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My vundles
+Bundle 'wincent/Command-T'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-git'
+Bundle 'godlygeek/tabular'
+Bundle 'matchit.zip'
+Bundle 'tomtom/tcomment_vim'
 
 set autoindent
 set smartindent
