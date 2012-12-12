@@ -13,7 +13,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My vundles
-Bundle 'wincent/Command-T'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
@@ -24,6 +23,9 @@ Bundle 'tpope/vim-git'
 Bundle 'godlygeek/tabular'
 Bundle 'matchit.zip'
 Bundle 'tomtom/tcomment_vim'
+" Bundle 'sjbach/lusty'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
 
 set autoindent
 set smartindent
@@ -170,17 +172,23 @@ vnoremap < <gv
 vnoremap > >gv
 
 
+" ctrl-p
+let g:ctrlp_map = '<c-x>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " colors
 " colorscheme ir_black
 set background=dark
+" let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 colorscheme solarized
 
 " NERDTree
 :noremap <leader>n :NERDTreeToggle<cr>
 
-" fuzzyfinder textmate
-map <leader>h :FuzzyFinderTextMate<cr>
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
-
 set tags=./tags
+
+" let me know if i'm over 80 cols
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
