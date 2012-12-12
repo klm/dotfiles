@@ -114,6 +114,26 @@ function git_dirty {
   [ $? == 1 ] && echo "!"
 }
 
+tput sgr 0 0
+
+BOLD=$(tput bold)
+RESET=$(tput sgr0)
+SOLAR_YELLOW=$(tput setaf 136)
+SOLAR_ORANGE=$(tput setaf 166)
+SOLAR_RED=$(tput setaf 124)
+SOLAR_MAGENTA=$(tput setaf 125)
+SOLAR_VIOLET=$(tput setaf 61)
+SOLAR_BLUE=$(tput setaf 33)
+SOLAR_CYAN=$(tput setaf 37)
+SOLAR_GREEN=$(tput setaf 64)
+SOLAR_WHITE=$(tput setaf 254)
+
+style_user="\[${RESET}${SOLAR_GREEN}\]"
+style_host="\[${RESET}${SOLAR_GREEN}\]"
+style_path="\[${RESET}${SOLAR_VIOLET}\]"
+style_chars="\[${RESET}${SOLAR_WHITE}\]"
+style_branch="${SOLAR_YELLOW}"
+
 GREEN="\[\033[01;32m\]"
 BLUE="\[\033[01;34m\]"
 RED="\[\033[0;31m\]"
@@ -122,4 +142,5 @@ GRAY="\[\033[1;30m\]"
 LIGHT_GRAY="\[\033[0;37m\]"
 NONE="\[\033[0m\]"
 
-export PS1="$GREEN\u@\h$BLUE\w$GRAY \$(~/.rvm/bin/rvm-prompt i v g):$YELLOW\$(parse_git_branch)$RED\$(git_dirty)$NONE\$ "
+# export PS1="$GREEN\u@\h$BLUE\w$GRAY \$(~/.rvm/bin/rvm-prompt i v g):$YELLOW\$(parse_git_branch)$RED\$(git_dirty)$NONE\$ "
+export PS1="${style_user}\u@${style_host}\h${style_path}\w$RESET$SOLAR_WHITE \$(~/.rvm/bin/rvm-prompt i v g):${style_branch}\$(parse_git_branch)$RESET$SOLAR_RED\$(git_dirty)${style_chars}\$ "
