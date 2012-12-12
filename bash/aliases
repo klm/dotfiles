@@ -27,7 +27,10 @@ alias gca="git commit -a -m"
 alias gc="git commit"
 alias gm="git commit -m"
 alias gd="git diff"
+alias gsu="git submodule update --init"
 
 alias retag='ctags -R --exclude=.svn --exclude=.git --exclude=log *'
 
 alias cuc="cucumber -fprogress --tags ~@watir features"
+alias tmux="TERM=screen-256color-bce tmux"
+
