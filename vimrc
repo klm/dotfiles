@@ -23,16 +23,16 @@ Bundle 'tpope/vim-git'
 Bundle 'godlygeek/tabular'
 Bundle 'matchit.zip'
 Bundle 'tomtom/tcomment_vim'
-" Bundle 'sjbach/lusty'
+Bundle 'sjbach/lusty'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'pangloss/vim-javascript'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'ervandew/supertab'
 
-set autoindent
-set smartindent
 set showmode
 set showcmd
-set wildmenu
-set wildmode=list:longest
 set title
 set ruler
 set hlsearch
@@ -46,10 +46,42 @@ set hlsearch
 set history=1000
 set autoread
 
+" ================ Completion =======================
+
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
+
+" ================ Turn Off Swap Files ==============
+
+set noswapfile
+set nobackup
+set nowb
+
 set backupdir=~/.tmp   
 set directory=~/.tmp "don't clutter my dirs with swp and tmp files
 
-set backspace=indent,eol,start
+" ================ Persistent Undo ==================
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+
+set backspace=indent,eol,start " allows backspace insert mode
+
+" show fancy symbols for Powerline
+let g:Powerline_symbols='fancy'
 
 " Status line
 set laststatus=2
@@ -70,9 +102,18 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
 runtime! macros/matchit.vim
 
-set ai 
-set sw=2
-set et
+" ================ Indentation ======================
+
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
 
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
@@ -95,6 +136,7 @@ imap <C-s> <esc>:w<CR>
 " ctrl-p maps to :cp (prev search result)
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
 
 "no highlight
 map <C-h> :nohl<CR>
@@ -153,6 +195,12 @@ map <Leader>vu :RVunittest
 map <Leader>su :RSunittest 
 map <Leader>vv :RVview 
 map <Leader>sv :RSview 
+"
+" Create window splits easier. The default
+" way is Ctrl-w,v and Ctrl-w,s. I remap
+" this to vv and ss
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> ss <C-w>s
 
 " Display extra whitespace
 " set listchars=trail:.,tab:>-
