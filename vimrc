@@ -5,7 +5,7 @@ filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
 " Vundle setup
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -23,13 +23,13 @@ Bundle 'tpope/vim-git'
 Bundle 'godlygeek/tabular'
 Bundle 'matchit.zip'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'sjbach/lusty'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ervandew/supertab'
+Bundle 'jamessan/vim-gnupg'
 
 set showmode
 set showcmd
@@ -96,7 +96,7 @@ set statusline+=%<%P                         " file position
 set statusline+=%{fugitive#statusline()}
 
 " use ack instead of grep
-set grepprg=ack
+set grepprg=ag
 
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
