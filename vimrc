@@ -27,9 +27,13 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'pangloss/vim-javascript'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'ervandew/supertab'
 Bundle 'jamessan/vim-gnupg'
+
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 
 set showmode
 set showcmd
@@ -85,15 +89,18 @@ let g:Powerline_symbols='fancy'
 
 " Status line
 set laststatus=2
-set statusline=
-set statusline+=%-3.3n\                      " buffer number
-set statusline+=%f\                          " filename
-set statusline+=%h%m%r%w                     " status flags
-set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
-set statusline+=%=                           " right align remainder
-set statusline+=%-14(%l,%c%V%)               " line, character
-set statusline+=%<%P                         " file position
-set statusline+=%{fugitive#statusline()}
+set showtabline=2
+set noshowmode
+
+" set statusline=
+" set statusline+=%-3.3n\                      " buffer number
+" set statusline+=%f\                          " filename
+" set statusline+=%h%m%r%w                     " status flags
+" set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
+" set statusline+=%=                           " right align remainder
+" set statusline+=%-14(%l,%c%V%)               " line, character
+" set statusline+=%<%P                         " file position
+" set statusline+=%{fugitive#statusline()}
 
 " use ack instead of grep
 set grepprg=ag
@@ -206,11 +213,6 @@ nnoremap <silent> ss <C-w>s
 " set listchars=trail:.,tab:>-
 " set list
 
-" useful key bindings
-imap uu _
-imap hh =>
-imap aa @
-
 " better movement on wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -226,10 +228,12 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " colors
 " colorscheme ir_black
+syntax enable
 set background=dark
-" let g:solarized_termcolors = 256
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+"set t_Co=16
+"let g:solarized_termcolors=16
+"let g:solarized_visibility = "normal"
+"let g:solarized_contrast = "high"
 colorscheme solarized
 
 " NERDTree

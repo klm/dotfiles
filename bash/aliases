@@ -6,20 +6,6 @@ alias ll='ls -l'
 alias sc='script/console'
 alias ss="script/server"
 
-#(i)gnore grep -- ignores .svn directories/files
-alias igrep="find . -path '*/.svn' -prune -o -type f -print0 | xargs -0 grep -I -n -e"
-
-alias n="cd ~/projects/nucleus"
-alias m="cd ~/projects/montague"
-alias p="cd ~/projects/presuming-education"
-alias cm="cd ~/projects/camberwell"
-
-alias f09='cd ~/e168f09'
-alias sec='cd ~/section'
-
-alias rcg='ssh rcgw1.dfci.harvard.edu'
-alias rd2='ssh rd2.dfci.harvard.edu'
-
 alias rc='rails console'
 alias rs='rails server --debugger'
 
@@ -31,6 +17,11 @@ alias gsu="git submodule update --init"
 
 alias retag='ctags -R --exclude=.svn --exclude=.git --exclude=log *'
 
-alias cuc="cucumber -fprogress --tags ~@watir features"
-alias tmux="TERM=screen-256color-bce tmux"
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
