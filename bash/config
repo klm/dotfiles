@@ -1,5 +1,4 @@
 export HISTCONTROL=ignoreboth
-export SVN_EDITOR=/usr/bin/vim
 export EDITOR="vim"
 
 # Keep detailed track of time in history
@@ -7,50 +6,8 @@ export HISTTIMEFORMAT='%Y-%b-%d %a %H:%M:%S - '
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
-
-lsgems() {
-  for dir in $(echo "${GEM_PATH:-"$(gem env gempath)"}" | tr ':' ' '); do
-    /bin/ls $dir/gems
-      done | sort | uniq
-      unset dir
-}
-
-#Move to a directory of a specific gem // cdgem rails
-cdgem() {
-  local gem_name="$1"
-    local gem_dir="$GEM_HOME"
-    if [[ -z "$gem_dir" ]]; then
-      local gem_dir=$(gem env gemdir)
-        fi
-        local full_gem_path="$gem_dir/gems/$gem_name"
-        if [[ -d "$full_gem_path" ]]; then
-          cd "$full_gem_path"
-        else
-          echo "Unknown gem: $gem_name" 2>&1
-            return 1
-            fi
-}
-function __bash_complete_cdgem {
-  local current gem_dir gem_list
-    COMPREPLY=()
-    current="${COMP_WORDS[COMP_CWORD]}"
-    if [[ ( ${COMP_CWORD} -eq 1 ) && ${COMP_WORDS[0]} == cdgem ]]; then
-      gem_dir="$GEM_HOME"
-        if [[ -z "$gem_dir" ]]; then
-          gem_dir=$(gem env gemdir)
-            fi
-            gem_list=$(ls "$gem_dir/gems/")
-            COMPREPLY=( $(compgen -W "$gem_list" -- "$current") )
-            fi
-}
-complete -F __bash_complete_cdgem cdgem
-
-
-function authme {
-  ssh $1 'cat >>.ssh/authorized_keys' <~/.ssh/id_dsa.pub
-}
 
 # Disable flow control commands (keeps C-s from freezing everything)
 stty start undef
@@ -62,85 +19,43 @@ SSH_ENV="$HOME/.ssh/environment"
 # start agent
 function start_agent {
   echo "Initializing new SSH agent..."
-    spawn ssh-agent
-    ssh-agent | sed 's/^echo/#echo/' > "$SSH_ENV"
-    echo succeeded
-    chmod 600 "$SSH_ENV"
-    . "$SSH_ENV" > /dev/null
-    ssh-add
+  # spawn ssh-agent
+  ssh-agent | sed 's/^echo/#echo/' > "$SSH_ENV"
+  echo succeeded
+  chmod 600 "$SSH_ENV"
+  . "$SSH_ENV" > /dev/null
+  ssh-add
 }
 
 # test for identities
 function test_identities {
-  # test whether standard identities have been added to the agent already
+# test whether standard identities have been added to the agent already
   ssh-add -l | grep "The agent has no identities" > /dev/null
-    if [ $? -eq 0 ]; then
-      ssh-add
-      ssh-add id_rsa.vista
-      # $SSH_AUTH_SOCK broken so we start a new proper agent
-      if [ $? -eq 2 ];then
-        start_agent
-      fi
+  if [ $? -eq 0 ]; then
+    ssh-add
+    # $SSH_AUTH_SOCK broken so we start a new proper agent
+    if [ $? -eq 2 ];then
+      start_agent
     fi
+  fi
 }
 
 # check for running ssh-agent with proper $SSH_AGENT_PID
 if [ -n "$SSH_AGENT_PID" ]; then
-    ps -ef | grep "$SSH_AGENT_PID" | grep ssh-agent > /dev/null
-    if [ $? -eq 0 ]; then
+  ps -ef | grep "$SSH_AGENT_PID" | grep ssh-agent > /dev/null
+  if [ $? -eq 0 ]; then
     test_identities
-fi
-# if $SSH_AGENT_PID is not properly set, we might be able to load one from
-# $SSH_ENV
+  fi
+  # if $SSH_AGENT_PID is not properly set, we might be able to load one from
+  # $SSH_ENV
 else
-    if [ -f "$SSH_ENV" ]; then
-      . "$SSH_ENV" > /dev/null
-    fi
-    ps -ef | grep "$SSH_AGENT_PID" | grep -v grep | grep ssh-agent > /dev/null
-    if [ $? -eq 0 ]; then
-      test_identities
-    else
-      start_agent
-    fi
+  if [ -f "$SSH_ENV" ]; then
+    . "$SSH_ENV" > /dev/null
+  fi
+  ps -ef | grep "$SSH_AGENT_PID" | grep -v grep | grep ssh-agent > /dev/null
+  if [ $? -eq 0 ]; then
+    test_identities
+  else
+    start_agent
+  fi
 fi
-
-# get the prompt set up for git
-function parse_git_branch {
-  git branch 2>/dev/null | grep '^*' | colrm 1 2 | sed 's_\(.*\)_(\1)_'
-}
-
-function git_dirty {
-  git diff --quiet HEAD &>/dev/null
-  [ $? == 1 ] && echo "!"
-}
-
-tput sgr 0 0
-
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
-SOLAR_YELLOW=$(tput setaf 136)
-SOLAR_ORANGE=$(tput setaf 166)
-SOLAR_RED=$(tput setaf 124)
-SOLAR_MAGENTA=$(tput setaf 125)
-SOLAR_VIOLET=$(tput setaf 61)
-SOLAR_BLUE=$(tput setaf 33)
-SOLAR_CYAN=$(tput setaf 37)
-SOLAR_GREEN=$(tput setaf 64)
-SOLAR_WHITE=$(tput setaf 254)
-
-style_user="\[${RESET}${SOLAR_GREEN}\]"
-style_host="\[${RESET}${SOLAR_GREEN}\]"
-style_path="\[${RESET}${SOLAR_VIOLET}\]"
-style_chars="\[${RESET}${SOLAR_WHITE}\]"
-style_branch="${SOLAR_YELLOW}"
-
-GREEN="\[\033[01;32m\]"
-BLUE="\[\033[01;34m\]"
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GRAY="\[\033[1;30m\]"
-LIGHT_GRAY="\[\033[0;37m\]"
-NONE="\[\033[0m\]"
-
-# export PS1="$GREEN\u@\h$BLUE\w$GRAY \$(~/.rvm/bin/rvm-prompt i v g):$YELLOW\$(parse_git_branch)$RED\$(git_dirty)$NONE\$ "
-export PS1="${style_user}\u@${style_host}\h${style_path}\w$RESET$SOLAR_WHITE \$(~/.rvm/bin/rvm-prompt i v g):${style_branch}\$(parse_git_branch)$RESET$SOLAR_RED\$(git_dirty)${style_chars}\$ "

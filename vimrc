@@ -30,10 +30,11 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'ervandew/supertab'
 Bundle 'jamessan/vim-gnupg'
 
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+" set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+set rtp+=~/.local/lib/python3.5/site-packages/powerline/bindings/vim
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 
 set showmode
 set showcmd
