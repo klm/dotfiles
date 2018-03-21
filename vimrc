@@ -29,12 +29,8 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'ervandew/supertab'
 Bundle 'jamessan/vim-gnupg'
-
-" set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
-set rtp+=~/.local/lib/python3.5/site-packages/powerline/bindings/vim
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 
 set showmode
 set showcmd
@@ -84,9 +80,6 @@ set undodir=~/.vim/backups
 set undofile
 
 set backspace=indent,eol,start " allows backspace insert mode
-
-" show fancy symbols for Powerline
-let g:Powerline_symbols='fancy'
 
 " Status line
 set laststatus=2
